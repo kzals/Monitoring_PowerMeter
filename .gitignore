@@ -1,0 +1,6 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.xls
+Public_PM2xxx_PMC Register List_v1001.xls

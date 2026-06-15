@@ -1,0 +1,69 @@
+{
+  "devices": [
+    {
+      "name": "mdp-1",
+      "enabled": true,
+      "serial_port": "/dev/ttyUSB1",
+      "baudrate": 19200,
+      "bytesize": 8,
+      "parity": "E",
+      "stopbits": 1,
+      "timeout_sec": 1.0,
+      "slave_id": 1,
+      "machine_poll_interval_sec": 5,
+      "api_poll_interval_sec": 10,
+      "address_offset": -1,
+      "byte_order": "BIG",
+      "word_order": "BIG"
+    },
+    {
+      "name": "mdp-2",
+      "enabled": true,
+      "serial_port": "/dev/ttyUSB1",
+      "baudrate": 19200,
+      "bytesize": 8,
+      "parity": "E",
+      "stopbits": 1,
+      "timeout_sec": 1.0,
+      "slave_id": 2,
+      "machine_poll_interval_sec": 5,
+      "api_poll_interval_sec": 10,
+      "address_offset": -1,
+      "byte_order": "BIG",
+      "word_order": "BIG"
+    },
+    {
+      "name": "mdp-3",
+      "enabled": true,
+      "serial_port": "/dev/ttyUSB1",
+      "baudrate": 19200,
+      "bytesize": 8,
+      "parity": "E",
+      "stopbits": 1,
+      "timeout_sec": 1.0,
+      "slave_id": 3,
+      "machine_poll_interval_sec": 5,
+      "api_poll_interval_sec": 10,
+      "address_offset": -1,
+      "byte_order": "BIG",
+      "word_order": "BIG"
+    },
+    {
+      "name": "mdp-4",
+      "enabled": true,
+      "serial_port": "/dev/ttyUSB1",
+      "baudrate": 19200,
+      "bytesize": 8,
+      "parity": "E",
+      "stopbits": 1,
+      "timeout_sec": 1.0,
+      "slave_id": 4,
+      "machine_poll_interval_sec": 5,
+      "api_poll_interval_sec": 10,
+      "address_offset": -1,
+      "byte_order": "BIG",
+      "word_order": "BIG"
+    }
+  ]
+}
+
