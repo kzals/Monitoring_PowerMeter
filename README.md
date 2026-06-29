@@ -106,6 +106,58 @@ Script ini akan:
 
 Pastikan `.env` sudah berisi konfigurasi InfluxDB yang benar.
 
+## 7) Membuat Service systemd (Auto-Start di Linux)
+
+Agar skrip monitoring berjalan otomatis setiap kali Raspberry Pi / server Linux booting, buat layanan systemd.
+
+### 7.1 Buat File Service Unit
+```bash
+sudo nano /etc/systemd/system/monitoring-mdp.service
+```
+
+### 7.2 Isi File Service
+> **PENTING:**
+> - Pastikan `WorkingDirectory` dan `ExecStart` sesuai dengan path absolut proyek Anda.
+> - `ExecStart` harus menunjuk ke interpreter Python di dalam virtual environment.
+
+```ini
+[Unit]
+Description=Monitoring Main Distribution Panel Service
+After=network.target
+
+[Service]
+User=tti
+WorkingDirectory=/home/tti/Monitoring_Power/raspi
+ExecStart=/home/tti/Monitoring_Power/raspi/venv/bin/python pm2220_to_influx2.py
+# ExecStart=/home/pi/MonitoringDyeing_TTI/raspi/venv/bin/python mod_influx.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Penjelasan Konfigurasi:**
+- `After=network.target` — memastikan koneksi jaringan siap sebelum layanan mulai.
+- `WorkingDirectory` — penting agar skrip menemukan file `.env` dan `config/config.json`.
+- `Restart=always` — layanan otomatis dimulai ulang jika crash.
+- `ExecStart` — jalankan Python dari virtual environment dengan skrip utama.
+
+### 7.3 Aktifkan dan Jalankan Layanan
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable monitoring-mdp.service
+sudo systemctl start monitoring-mdp.service
+```
+
+### 7.4 Periksa Status dan Log
+```bash
+sudo systemctl status monitoring-mdp.service
+sudo journalctl -u monitoring-mdp.service -f
+```
+
 ## Troubleshooting cepat
 - Tidak ada data: cek wiring A/B RS485, slave ID, baudrate/parity/stopbits.
 - Data tidak masuk akal: ubah `address_offset` dari `-1` ke `0`.
